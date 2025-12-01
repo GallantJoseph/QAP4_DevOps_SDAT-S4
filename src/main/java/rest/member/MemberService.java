@@ -19,6 +19,12 @@ public class MemberService {
         return memberRepository.findAll();
     }
 
+    public Member getMemberById(Long id) {
+        Optional<Member> memberOptional = memberRepository.findById(id);
+
+        return memberOptional.orElse(null);
+    }
+
     public Member updateMemberById(Long id, Member member) {
         Optional<Member> memberOptional = memberRepository.findById(id);
 

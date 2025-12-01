@@ -24,8 +24,13 @@ public class MemberController {
         return new ResponseEntity<>(memberService.getAllMembers(), HttpStatus.OK);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Member> getMemberById(@PathVariable("id") Long id) {
+        return new ResponseEntity<>(memberService.getMemberById(id), HttpStatus.OK);
+    }
+
     @PutMapping("/{id}")
-    public ResponseEntity<Member> updateMemberById(@PathVariable("id") long id, @RequestBody Member member) {
+    public ResponseEntity<Member> updateMemberById(@PathVariable("id") Long id, @RequestBody Member member) {
         return new ResponseEntity<>(memberService.updateMemberById(id, member), HttpStatus.OK) ;
     }
 
