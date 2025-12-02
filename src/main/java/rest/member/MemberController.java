@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -20,7 +21,7 @@ public class MemberController {
     }
 
     @GetMapping()
-    public ResponseEntity<List<Member>> getAllMembers() {
+    public ResponseEntity<Iterable<Member>> getAllMembers() {
         return new ResponseEntity<>(memberService.getAllMembers(), HttpStatus.OK);
     }
 
@@ -39,5 +40,33 @@ public class MemberController {
         return new ResponseEntity<>(memberService.deleteMemberById(id), HttpStatus.OK);
     }
 
+    @GetMapping("/members_search")
+    public Iterable<Member> searchMembers(@RequestParam(value = "first_name", required = false) String firstName,
+                                            @RequestParam(value = "last_name", required = false) String last_name,
+                                            @RequestParam(value = "membership_type", required = false) String membershipType,
+                                            @RequestParam(value = "phone", required = false) String phone,
+                                            @RequestParam(value = "tournament_start_date", required = false) String tournamentStartDate) {
+
+        Iterable<Member> membersList = new ArrayList<>();
+
+        if (firstName != null)
+            membersList = memberService.findAllByFirstName(firstName);
+
+        else if (last_name != null)
+            membersList = memberService.findAllByLastName(last_name);
+
+        else if (membershipType != null)
+            membersList = memberService.findAllByMembershipType(membershipType);
+
+        else if (phone != null)
+            membersList = memberService.findAllByPhone(phone);
+
+        else if (tournamentStartDate != null) {
+            // TODO: Implement in Tournament and call here
+        }
+
+        return membersList;
+
+    }
 
 }

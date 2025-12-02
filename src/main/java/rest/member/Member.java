@@ -18,12 +18,13 @@ public class Member {
     private String phone;
     private LocalDate startDate;
     private int membershipDuration;
+    private String membershipType;
 
     public Member() {
     }
 
     public Member(String firstName, String lastName, String streetAddress, String city, String province, String email,
-                  String phone, LocalDate startDate, int membershipDuration) {
+                  String phone, LocalDate startDate, int membershipDuration, String membershipType) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.streetAddress = streetAddress;
@@ -33,6 +34,7 @@ public class Member {
         this.phone = phone;
         this.startDate = startDate;
         this.membershipDuration = membershipDuration;
+        this.membershipType = membershipType;
     }
 
     public Long getId() {
@@ -115,6 +117,14 @@ public class Member {
         this.membershipDuration = membershipDuration;
     }
 
+    public String getMembershipType() {
+        return membershipType;
+    }
+
+    public void setMembershipType(String membershipType) {
+        this.membershipType = membershipType;
+    }
+
     @Override
     public String toString() {
         return "Member( id = " + id +
@@ -126,6 +136,7 @@ public class Member {
                 ", email = " + email +
                 ", phone = " + phone +
                 ", startDate = " + startDate +
-                ", membershipDuration = " + membershipDuration +" )";
+                ", membershipDuration = " + membershipDuration +
+                ", membershipType = " + membershipType +" )";
     }
 }

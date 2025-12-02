@@ -3,7 +3,6 @@ package rest.member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -15,7 +14,7 @@ public class MemberService {
         return memberRepository.save(member);
     }
 
-    public List<Member> getAllMembers() {
+    public Iterable<Member> getAllMembers() {
         return memberRepository.findAll();
     }
 
@@ -42,6 +41,7 @@ public class MemberService {
         memberToUpdate.setPhone(member.getPhone());
         memberToUpdate.setStartDate(member.getStartDate());
         memberToUpdate.setMembershipDuration(member.getMembershipDuration());
+        memberToUpdate.setMembershipType(member.getMembershipType());
 
         return memberRepository.save(memberToUpdate);
     }
@@ -55,5 +55,26 @@ public class MemberService {
         memberRepository.deleteById(id);
 
         return memberOptional.get();
+    }
+
+    public Iterable<Member> findAllByFirstName(String firstName) {
+        return memberRepository.findAllByFirstName(firstName);
+    }
+
+    public Iterable<Member> findAllByLastName(String lastName) {
+        return memberRepository.findAllByLastName(lastName);
+    }
+
+    public Iterable<Member> findAllByMembershipType(String membershipType) {
+        return memberRepository.findAllByMembershipType(membershipType);
+    }
+
+    public Iterable<Member> findAllByPhone(String phone) {
+        return memberRepository.findAllByPhone(phone);
+    }
+
+    public Iterable<Member> findAllBy_Tournament_startDate(String phone) {
+        // TODO: Implement in Tournament, return null for now
+        return null;
     }
 }
