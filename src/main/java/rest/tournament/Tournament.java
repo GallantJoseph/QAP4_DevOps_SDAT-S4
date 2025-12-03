@@ -3,8 +3,9 @@ package rest.tournament;
 import jakarta.persistence.*;
 import rest.member.Member;
 import java.time.LocalDate;
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Tournament {
@@ -19,7 +20,7 @@ public class Tournament {
     private float prizeAmount;
 
     @ManyToMany
-    private List<Member> members = new ArrayList<>();
+    private Set<Member> members = new HashSet<>();
 
     public Tournament() {
 
@@ -81,11 +82,11 @@ public class Tournament {
         this.prizeAmount = prizeAmount;
     }
 
-    public List<Member> getMembers() {
+    public Set<Member> getMembers() {
         return members;
     }
 
-    public void setMembers(List<Member> members) {
+    public void setMembers(Set<Member> members) {
         this.members = members;
     }
 

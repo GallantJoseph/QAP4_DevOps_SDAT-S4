@@ -1,9 +1,9 @@
-# QAP 3 - DevOps/SDAT - Golf Club Tournament API
+# QAP 4 - DevOps/SDAT - Golf Club Tournament API
 # Documentation
 
 ## Docker
 
-To build the image and run a container, execute the following commands:<br>
+To build the image and run a container, execute the following commands:<br><br>
 docker build -t josephgallant/golftournamentapp .<br>
 docker compose up<br>
 
