@@ -2,13 +2,21 @@ package rest.member;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import rest.tournament.Tournament;
+import rest.tournament.TournamentRepository;
 
+import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class MemberService {
     @Autowired
     private MemberRepository memberRepository;
+
+    @Autowired
+    private TournamentRepository tournamentRepository;
 
     public Member saveMember(Member member) {
         return memberRepository.save(member);
@@ -73,8 +81,14 @@ public class MemberService {
         return memberRepository.findAllByPhone(phone);
     }
 
-    public Iterable<Member> findAllBy_Tournament_startDate(String phone) {
-        // TODO: Implement in Tournament, return null for now
-        return null;
+    public Iterable<Member> findAllBy_Tournament_startDate(String startDate) {
+        Iterable<Tournament> tournamentIterable = tournamentRepository.findAllByStartDate(LocalDate.parse(startDate));
+        Set<Member> membersFound = new HashSet<>();
+
+        for (Tournament tournament: tournamentIterable) {
+            membersFound.addAll(tournament.getMembers());
+        }
+
+        return membersFound;
     }
 }

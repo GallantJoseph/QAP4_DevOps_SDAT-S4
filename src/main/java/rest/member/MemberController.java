@@ -62,7 +62,7 @@ public class MemberController {
             membersList = memberService.findAllByPhone(phone);
 
         else if (tournamentStartDate != null) {
-            // TODO: Implement in Tournament and call here
+            membersList = memberService.findAllBy_Tournament_startDate(tournamentStartDate);
         }
 
         return membersList;
